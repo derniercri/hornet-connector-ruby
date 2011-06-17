@@ -5,14 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "hornet-connector-ruby"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "odisseus@gmail.com"
-    gem.homepage = "http://github.com/robink/hornet-connector-ruby"
-    gem.authors = ["Robin Komiwes"]
+    gem.summary = %Q{Hornet Ruby Connector - Realtime engine for webapps}
+    gem.description = %Q{Hornet Ruby Connector is a connector for Hornet, a realtime engine backed by Redis and Socket.io}
+    gem.email = "robin.komiwes@gmail.com"
+    gem.homepage = "http://github.com/nectify/hornet-connector-ruby"
+    gem.authors = ["Robin Komiwes", "Benjamin Tierny", "Tristan Bourgois", "Maxime Brazeilles"]
     gem.rubyforge_project = "hornet-connector-ruby"
-    gem.add_development_dependency "thoughtbot-shoulda"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency 'alphadecimal'
   end
   Jeweler::RubyforgeTasks.new do |rubyforge|
     rubyforge.doc_task = "rdoc"
