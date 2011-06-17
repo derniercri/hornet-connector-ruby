@@ -19,10 +19,14 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "Gemfile",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "hornet-connector-ruby.gemspec",
+     "init.rb",
+     "lib/hornet.rb",
      "test/hornet-connector-ruby_test.rb",
      "test/test_helper.rb"
   ]
