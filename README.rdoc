@@ -1,5 +1,0 @@
-= Hornet Ruby Connector
-
-== Copyright
-
-Copyright (c) 2011 Nectify. See LICENSE for details.
