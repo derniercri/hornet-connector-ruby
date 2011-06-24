@@ -45,7 +45,7 @@ module Hornet
   
 
   def publish(channel, type, message, options)
-    redis.publish("hornet:channel:" + channel.to_s, message.merge(type).merge(options).to_json)
+    redis.publish("hornet:channel:" + channel.to_s, message.merge(:type => type).merge(options).to_json)
   end
   
   
@@ -71,6 +71,6 @@ module Hornet
     def generate_token_suffix
       time = Time.now.to_i
       
-      ("%010d" % time ) + ("%05d" % rand(100000))
+      (("%010d" % time ) + ("%05d" % rand(100000))).alphadecimal
     end
 end

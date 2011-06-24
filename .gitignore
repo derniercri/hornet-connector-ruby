@@ -1,9 +1,8 @@
-Gemfile.lock
-History.txt
-Manifest.txt
-PostInstall.txt
-Rakefile
-README.md
-test/**
-script/**
-lib/hornet.rb
+
+*.sw?
+.DS_Store
+coverage
+rdoc
+*.gem
+pkg
+
