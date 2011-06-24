@@ -8,10 +8,10 @@ module Hornet
     "hornet:events:disconnect"
   ]
   
-  def tokenTTL(tokenTTL)
-    @tokenTTL ||= tokenTTL
+  def token_TTL( token_TTL )
+    @token_TTL ||= token_TTL
     
-    @tokenTTL || 120
+    @token_TTL || 120
   end
 
   def redis_options(redis_option={})
@@ -30,7 +30,7 @@ module Hornet
   def create_access_token(channel)
     token_id = redis.incr "hornet:tokens_id"
 
-    token = (token_id.to_s + generate_token_suffix).alphadecimal
+    token = (token_id.to_s + generate_token_suffix).to_i.alphadecimal
     
     redis.set "hornet:token:" + token, channel
 

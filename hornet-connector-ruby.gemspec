@@ -8,20 +8,20 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Robin Komiwes", "Benjamin Tierny", "Tristan Bourgois", "Maxime Brazeilles"]
-  s.date = %q{2011-06-17}
+  s.authors = [%q{Robin Komiwes}, %q{Benjamin Tierny}, %q{Tristan Bourgois}, %q{Maxime Brazeilles}]
+  s.date = %q{2011-06-24}
   s.description = %q{Hornet Ruby Connector is a connector for Hornet, a realtime engine backed by Redis and Socket.io}
   s.email = %q{robin.komiwes@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.md"
   ]
   s.files = [
     ".document",
      ".gitignore",
      "Gemfile",
      "LICENSE",
-     "README.rdoc",
+     "README.md",
      "Rakefile",
      "VERSION",
      "hornet-connector-ruby.gemspec",
@@ -31,10 +31,10 @@ Gem::Specification.new do |s|
      "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/nectify/hornet-connector-ruby}
-  s.rdoc_options = ["--charset=UTF-8"]
-  s.require_paths = ["lib"]
+  s.rdoc_options = [%q{--charset=UTF-8}]
+  s.require_paths = [%q{lib}]
   s.rubyforge_project = %q{hornet-connector-ruby}
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.8.5}
   s.summary = %q{Hornet Ruby Connector - Realtime engine for webapps}
   s.test_files = [
     "test/hornet-connector-ruby_test.rb",
@@ -42,7 +42,6 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
