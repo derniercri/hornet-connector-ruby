@@ -37,7 +37,7 @@ module Hornet
     return token;
   end
 
-  def disconnectTokens(tokens)
+  def disconnect_tokens(tokens)
     disconnectMsg = "token:" + tokens.to_json
 
     publish("hornet", "disconnect_tokens", disconnectMsg)
@@ -45,7 +45,7 @@ module Hornet
   
 
   def publish(channel, type, message, options)
-    redis.publish("hornet:channel:" + channel.to_s, message.merge(type).merge(options).to_json)
+    redis.publish("hornet:channel:" + channel.to_s, message.merge(:type => type).merge(options).to_json)
   end
   
   
