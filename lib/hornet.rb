@@ -32,7 +32,10 @@ module Hornet
 
     token = (token_id.to_s + generate_token_suffix).to_i.alphadecimal
     
-    redis.set "hornet:token:" + token, channel
+    key = "hornet:token:" + token
+
+    redis.set key, channel
+    redis.expire key, token_TTL
 
     return token;
   end
