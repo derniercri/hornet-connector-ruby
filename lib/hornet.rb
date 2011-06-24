@@ -8,7 +8,7 @@ module Hornet
     "hornet:events:disconnect"
   ]
   
-  def token_TTL( token_TTL )
+  def token_TTL( token_TTL = nil )
     @token_TTL ||= token_TTL
     
     @token_TTL || 120
@@ -35,6 +35,9 @@ module Hornet
     key = "hornet:token:" + token
 
     redis.set key, channel
+
+    puts "tokenTTL: " + token_TTL.to_s
+
     redis.expire key, token_TTL
 
     return token;
