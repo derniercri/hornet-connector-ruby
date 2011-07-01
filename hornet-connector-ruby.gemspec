@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hornet-connector-ruby}
-  s.version = "0.1.2"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Robin Komiwes}, %q{Benjamin Tierny}, %q{Tristan Bourgois}, %q{Maxime Brazeilles}]
-  s.date = %q{2011-06-24}
+  s.date = %q{2011-07-01}
   s.description = %q{Hornet Ruby Connector is a connector for Hornet, a realtime engine backed by Redis and Socket.io}
   s.email = %q{robin.komiwes@gmail.com}
   s.extra_rdoc_files = [
