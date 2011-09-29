@@ -36,8 +36,6 @@ module Hornet
 
     redis.set key, channel
 
-    puts "tokenTTL: " + token_TTL.to_s
-
     redis.expire key, token_TTL
 
     return token;
@@ -50,7 +48,7 @@ module Hornet
   end
   
 
-  def publish(channel, type, message, options)
+  def publish(channel, type, message, options = {})
     redis.publish("hornet:channel:" + channel.to_s, message.merge(:type => type).merge(options).to_json)
   end
   
