@@ -43,9 +43,9 @@ module Hornet
         end
 
       elsif opts[:channel]
-        redis.set key, opts[:channel] 
+        redis.sadd key, opts[:channel] 
       end
-      
+
     else
       puts '*** DEPRECATED : Please use :channel => "#{args[0]}" instead of "#{args[0]}" ***'
       redis.set key, args[0]
