@@ -35,15 +35,17 @@ module Hornet
     key = "hornet:token:" + token
     if args[0].is_a? Hash
       opts = args[0]
-      if opts['channels']
 
-        opts['channels'].each do |channel|
+      if opts[:channels]
+
+        opts[:channels].each do |channel|
           redis.sadd key, channel
         end
 
-      elsif opts['channel']
-        redis.set key, opts['channel'] 
+      elsif opts[:channel]
+        redis.set key, opts[:channel] 
       end
+      
     else
       puts '*** DEPRECATED : Please use :channel => "#{args[0]}" instead of "#{args[0]}" ***'
       redis.set key, args[0]
@@ -51,7 +53,7 @@ module Hornet
 
     redis.expire key, token_TTL
 
-    return token;
+    return token
   end
 
   def disconnect_tokens(tokens)
