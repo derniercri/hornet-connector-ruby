@@ -27,14 +27,22 @@ module Hornet
   #
   # - a random number on 5 digits, again, left padded with 0.
   #   This last part is just to increase the complexity of the token.
-  def create_access_token(channel)
+  def create_access_token(opts = {})
     token_id = redis.incr "hornet:tokens_id"
 
     token = (token_id.to_s + generate_token_suffix).to_i.alphadecimal
     
     key = "hornet:token:" + token
 
-    redis.set key, channel
+    if opts['channels']
+      
+      opts['channels'].each do |channel|
+        redis.sadd key, channel
+      end
+
+    elsif opts['channel']
+      redis.set key, opts['channel'] 
+    end
 
     redis.expire key, token_TTL
 
