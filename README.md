@@ -19,6 +19,32 @@ When you want to broadcast a message to a specific channel, you'll also use the 
 
 Hornet messages should always be JSON valid objects, containing at least the "type" attribute.
 
+## 0.3 changes
+
+### What's new ?
+
+* Connector at 0.3 now support the multichannel feature from Hornet 0.3. *Do not use the 0.3 of hornet-connector-ruby for Hornet below 0.3.0, use 0.2.x instead *
+* New ruby synthax to create a token and publishing message.
+* Deprecated old synthax but not removed
+
+### New synthax
+
+To create a token now you can use the following synthax
+  
+  Hornet.create_access_token( :channels => ['channel1', 'channel2'] )
+  Hornet.create_access_token( :channel => 'channel' )
+  // Deprecated
+  Hornet.create_access_token('channel')
+ 
+Same thing for publishing :
+
+	Hornet.publish( :type => "type", :channels => ["channel", "channel2"], :message => { :message => 'Hi' } )
+	Hornet.publish( :type => "type", :channel => "channel", :message => { :message => 'Hi' } )
+	// Deprecated
+	Hornet.publish( "channel", "type", { :message => 'Hi' } )
+
+Note: you can't publish and create access token with the old synthax.
+	
 ## Connector Installation
 
 Add the following dependency in your Gemfile:
