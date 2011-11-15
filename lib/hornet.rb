@@ -63,8 +63,26 @@ module Hornet
   end
   
 
-  def publish(channel, type, message, options = {})
-    redis.publish("hornet:channel:" + channel.to_s, message.merge(:type => type).merge(options).to_json)
+  def publish(*args)
+    if args[0].is_a? Hash
+      opts = args[0]
+      opts[:options] ||= {}
+
+      if opts[:channels]
+
+        opts[:channels].each do |channel|
+          redis.publish("hornet:channel:" + channel.to_s, opts[:message].merge( :type => opts[:type], :channel => channel.to_s  ).merge(opts[:options]).to_json )
+        end
+
+      elsif opts[:channel]
+        redis.publish("hornet:channel:" + opts[:channel].to_s, opts[:message].merge( :type => opts[:type], :channel => opts[:channel].to_s ).merge(opts[:options]).to_json )
+      end
+
+    else
+      puts '*** DEPRECATED : Please use :type , :channel(s) :message :options instead of direct args ***'
+      args[3] ||= {}
+      redis.publish("hornet:channel:" + args[0].to_s, args[2].merge( :type => args[1].to_s, :channel => args[0].to_s ).merge( args[3] ).to_json)
+    end
   end
   
   
