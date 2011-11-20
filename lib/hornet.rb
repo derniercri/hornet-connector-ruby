@@ -14,7 +14,7 @@ module Hornet
     @token_TTL || 120
   end
 
-  def redis_options(redis_option={})
+  def redis_options( redis_option = {} )
     @redis_options ||= redis_option
   end
   
@@ -27,7 +27,7 @@ module Hornet
   #
   # - a random number on 5 digits, again, left padded with 0.
   #   This last part is just to increase the complexity of the token.
-  def create_access_token(*args)
+  def create_access_token( *args )
     token_id = redis.incr "hornet:tokens_id"
 
     token = (token_id.to_s + generate_token_suffix).to_i.alphadecimal
@@ -48,13 +48,14 @@ module Hornet
 
     else
       puts '*** DEPRECATED : Please use :channel => "#{args[0]}" instead of "#{args[0]}" ***'
-      redis.set key, args[0]
+      redis.sadd key, args[0]
     end
 
     redis.expire key, token_TTL
 
     return token
   end
+
 
   def disconnect_tokens(tokens)
     disconnectMsg = "token:" + tokens.to_json
@@ -63,7 +64,7 @@ module Hornet
   end
   
 
-  def publish(*args)
+  def publish( *args )
     if args[0].is_a? Hash
       opts = args[0]
       opts[:options] ||= {}
