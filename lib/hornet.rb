@@ -14,7 +14,7 @@ module Hornet
     @token_TTL || 120
   end
 
-  def redis_options(redis_option={})
+  def redis_options( redis_option = {} )
     @redis_options ||= redis_option
   end
   
@@ -27,19 +27,35 @@ module Hornet
   #
   # - a random number on 5 digits, again, left padded with 0.
   #   This last part is just to increase the complexity of the token.
-  def create_access_token(channel)
+  def create_access_token( *args )
     token_id = redis.incr "hornet:tokens_id"
 
     token = (token_id.to_s + generate_token_suffix).to_i.alphadecimal
     
     key = "hornet:token:" + token
+    if args[0].is_a? Hash
+      opts = args[0]
 
-    redis.set key, channel
+      if opts[:channels]
+
+        opts[:channels].each do |channel|
+          redis.sadd key, channel
+        end
+
+      elsif opts[:channel]
+        redis.sadd key, opts[:channel] 
+      end
+
+    else
+      puts '*** DEPRECATED : Please use :channel => "#{args[0]}" instead of "#{args[0]}" ***'
+      redis.sadd key, args[0]
+    end
 
     redis.expire key, token_TTL
 
-    return token;
+    return token
   end
+
 
   def disconnect_tokens(tokens)
     disconnectMsg = "token:" + tokens.to_json
@@ -48,8 +64,26 @@ module Hornet
   end
   
 
-  def publish(channel, type, message, options = {})
-    redis.publish("hornet:channel:" + channel.to_s, message.merge(:type => type).merge(options).to_json)
+  def publish( *args )
+    if args[0].is_a? Hash
+      opts = args[0]
+      opts[:options] ||= {}
+
+      if opts[:channels]
+
+        opts[:channels].each do |channel|
+          redis.publish("hornet:channel:" + channel.to_s, opts[:message].merge( :type => opts[:type], :channel => channel.to_s  ).merge(opts[:options]).to_json )
+        end
+
+      elsif opts[:channel]
+        redis.publish("hornet:channel:" + opts[:channel].to_s, opts[:message].merge( :type => opts[:type], :channel => opts[:channel].to_s ).merge(opts[:options]).to_json )
+      end
+
+    else
+      puts '*** DEPRECATED : Please use :type , :channel(s) :message :options instead of direct args ***'
+      args[3] ||= {}
+      redis.publish("hornet:channel:" + args[0].to_s, args[2].merge( :type => args[1].to_s, :channel => args[0].to_s ).merge( args[3] ).to_json)
+    end
   end
   
   
