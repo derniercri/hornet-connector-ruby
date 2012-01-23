@@ -1,4 +1,4 @@
-
+demo/
 *.sw?
 .DS_Store
 coverage
