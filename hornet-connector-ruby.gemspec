@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{hornet-connector-ruby}
-  s.version = "0.2.3"
+  s.name = "hornet-connector-ruby"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robin Komiwes", "Benjamin Tierny", "Tristan Bourgois", "Maxime Brazeilles"]
-  s.date = %q{2011-09-29}
-  s.description = %q{Hornet Ruby Connector is a connector for Hornet, a realtime engine backed by Redis and Socket.io}
-  s.email = %q{robin.komiwes@gmail.com}
+  s.date = "2012-01-23"
+  s.description = "Hornet Ruby Connector is a connector for Hornet, a realtime engine backed by Redis and Socket.io"
+  s.email = "robin.komiwes@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md"
@@ -30,11 +30,11 @@ Gem::Specification.new do |s|
     "test/hornet-connector-ruby_test.rb",
     "test/test_helper.rb"
   ]
-  s.homepage = %q{http://github.com/nectify/hornet-connector-ruby}
+  s.homepage = "http://github.com/nectify/hornet-connector-ruby"
   s.require_paths = ["lib"]
-  s.rubyforge_project = %q{hornet-connector-ruby}
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Hornet Ruby Connector - Realtime engine for webapps}
+  s.rubyforge_project = "hornet-connector-ruby"
+  s.rubygems_version = "1.8.11"
+  s.summary = "Hornet Ruby Connector - Realtime engine for webapps"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
