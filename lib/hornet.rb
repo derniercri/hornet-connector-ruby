@@ -58,7 +58,7 @@ module Hornet
 
 
   def disconnect_tokens(tokens)
-    disconnectMsg = "token:" + tokens.to_json
+    disconnectMsg = "tokens:" + tokens.to_json
 
     publish("hornet", "disconnect_tokens", disconnectMsg)
   end
